@@ -82,6 +82,7 @@
                     android:textSize="20sp"
                     />
                 <TextView
+                    android:id="@+id/tvNip"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -284,6 +285,7 @@
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
                 app:icon="@drawable/logout_24dp_ff6b6b_fill0_wght400_grad0_opsz24"
                 app:iconGravity="textStart"
                 app:iconTint="@color/red"

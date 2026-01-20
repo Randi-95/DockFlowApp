@@ -1,6 +1,7 @@
 package com.example.dockflowapp
 
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
@@ -30,7 +31,14 @@ class profileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         val shared = context?.getSharedPreferences("token", MODE_PRIVATE)
+        val editor = shared?.edit()
         val getToken = shared?.getString("token", "")
+
+        binding.btnLogout.setOnClickListener {
+            editor?.remove("token")
+            editor?.apply()
+            startActivity(Intent(context,LoginActivity::class.java))
+        }
 
         lifecycleScope.launch(Dispatchers.IO){
             val url = "${Helpers.baseUrl}Me"
@@ -48,6 +56,7 @@ class profileFragment : Fragment() {
                     binding.tvRole.text = dataJson.getString("role")
                     binding.tvDivison.text = dataJson.getString("division")
                     binding.tvPhone.text = dataJson.getString("phoneNumber")
+                    binding.tvNip.text = dataJson.getString("nip")
                     val image = dataJson.getString("photo")
 
                     val status = dataJson.getBoolean("isActive")
